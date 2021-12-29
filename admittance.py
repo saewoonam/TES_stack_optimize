@@ -69,7 +69,7 @@ def poynting(v):
     return np.real(v[:, 0, 0]*np.conj(v[:,1,0])/2)
 
 #@cache
-@lru_cache
+@lru_cache(maxsize=10)
 def build_stack_nk(stack_description, vac_lambdas):
     # build matrix of indices of refraction
     #  each row is a different wavelength
