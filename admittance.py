@@ -7,7 +7,8 @@ Created on Tue Dec 21 14:19:48 2021
 """
 import numpy as np
 import scipy.constants
-from functools import cache
+# from functools import cache
+from functools import lru_cache
 
 z0 = np.sqrt(scipy.constants.mu_0 / scipy.constants.epsilon_0)
 
@@ -67,7 +68,8 @@ nk = nk_code.load_from_materials_mat()
 def poynting(v):
     return np.real(v[:, 0, 0]*np.conj(v[:,1,0])/2)
 
-@cache
+#@cache
+@lru_cache
 def build_stack_nk(stack_description, vac_lambdas):
     # build matrix of indices of refraction
     #  each row is a different wavelength
